@@ -174,19 +174,17 @@ final class Mai_Display_Taxonomy {
 	 */
 	public function register_content_types() {
 
-		/***********************
-		 *  Custom Taxonomies  *
-		 ***********************/
-
+		// Filter for posts types to enabled the display taxo on.
 		$post_types = apply_filters( 'mai_display_taxonomy_post_types', array( 'post' ) );
 
+		// Register "Display" taxonomy.
 		register_taxonomy( 'mai_display', $post_types, array(
 			'exclude_from_search' => true,
 			'has_archive'         => false,
 			'hierarchical'        => true,
 			'labels' => array(
 				'name'                       => _x( 'Display', 'taxonomy general name'  , 'mai-display-taxonomy' ),
-				'singular_name'              => _x( 'Display' , 'taxonomy singular name', 'mai-display-taxonomy' ),
+				'singular_name'              => _x( 'Display', 'taxonomy singular name' , 'mai-display-taxonomy' ),
 				'search_items'               => __( 'Search Display'                    , 'mai-display-taxonomy' ),
 				'popular_items'              => __( 'Popular Display'                   , 'mai-display-taxonomy' ),
 				'all_items'                  => __( 'All Categories'                    , 'mai-display-taxonomy' ),
@@ -207,10 +205,10 @@ final class Mai_Display_Taxonomy {
 			'show_admin_column' => false,
 			'show_in_menu'      => true,
 			'show_in_nav_menus' => false,
+			'show_in_rest'      => true,
 			'show_tagcloud'     => false,
 			'show_ui'           => true,
 		) );
-
 	}
 
 	/**
