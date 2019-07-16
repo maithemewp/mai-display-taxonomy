@@ -10,7 +10,7 @@ Creates a "Display" taxonomy for use with Mai Theme's [grid] and other plugins.
 ```
 
 ## Screenshots
-**The Display taxonomy menu item and page.**
+**The Display taxonomy menu item and page.**<br>
 ![Display taxonomy menu](images/taxonomy-menu.png)<br>
-**The Display taxonomy metabox (works with Classic Editor and Gutenberg block editor).**
-![Display taxonomy picker](images/taxonomy-picker.png)
+**The Display taxonomy metabox (works with Classic Editor and Gutenberg block editor).**<br>
+![Display taxonomy picker](images/taxonomy-picker.png)<br>
