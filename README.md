@@ -1,5 +1,5 @@
 # Mai Display Taxonomy
-This plugin creates a new taxonomy that is hidden on the front end to create custom "Display" term locations for use with [grid].
+Creates a "Display" taxonomy for use with [grid] and other plugins.
 
 ## Example:
 1. Create a Display term called "Home Handpicked".

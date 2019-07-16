@@ -3,11 +3,11 @@
 /**
  * Plugin Name:     Mai Display Taxonomy
  * Plugin URI:      https://website.com
- * Description:     Core funtionality for website.com
+ * Description:     Creates a "Display" taxonomy for use with [grid] and other plugins.
  * Version:         0.1.0
  *
  * Author:          BizBudding, Mike Hemberger
- * Author URI:      https://bizbudding.com
+ * Author URI:      https://maitheme.com
  */
 
 // Exit if accessed directly.
