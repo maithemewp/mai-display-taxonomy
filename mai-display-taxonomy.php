@@ -2,12 +2,12 @@
 
 /**
  * Plugin Name:     Mai Display Taxonomy
- * Plugin URI:      https://website.com
- * Description:     Creates a "Display" taxonomy for use with [grid] and other plugins.
- * Version:         0.1.0
+ * Plugin URI:      https://bizbudding.com/products/mai-display-taxonomy/
+ * Description:     Creates a private "Display" taxonomy for use with Mai Post Grid block.
+ * Version:         1.0.0
  *
- * Author:          BizBudding, Mike Hemberger
- * Author URI:      https://maitheme.com
+ * Author:          BizBudding
+ * Author URI:      https://bizbudding.com
  */
 
 // Exit if accessed directly.
@@ -90,7 +90,7 @@ final class Mai_Display_Taxonomy {
 
 		// Plugin version.
 		if ( ! defined( 'MAI_DISPLAY_TAXONOMY_VERSION' ) ) {
-			define( 'MAI_DISPLAY_TAXONOMY_VERSION', '0.1.0' );
+			define( 'MAI_DISPLAY_TAXONOMY_VERSION', '1.0.0' );
 		}
 
 		// Plugin Folder Path.
@@ -165,6 +165,11 @@ final class Mai_Display_Taxonomy {
 
 		// Setup the updater.
 		$updater = Puc_v4_Factory::buildUpdateChecker( 'https://github.com/maithemewp/mai-display-taxonomy/', __FILE__, 'mai-display-taxonomy' );
+
+		// Maybe set github api token.
+		if ( defined( 'MAI_GITHUB_API_TOKEN' ) ) {
+			$updater->setAuthentication( MAI_GITHUB_API_TOKEN );
+		}
 	}
 
 	/**
