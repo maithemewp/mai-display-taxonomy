@@ -4,7 +4,7 @@
  * Plugin Name:     Mai Display Taxonomy
  * Plugin URI:      https://bizbudding.com/products/mai-display-taxonomy/
  * Description:     Creates a private "Display" taxonomy for use with Mai Post Grid block.
- * Version:         1.0.0
+ * Version:         1.0.1
  *
  * Author:          BizBudding
  * Author URI:      https://bizbudding.com
@@ -90,7 +90,7 @@ final class Mai_Display_Taxonomy {
 
 		// Plugin version.
 		if ( ! defined( 'MAI_DISPLAY_TAXONOMY_VERSION' ) ) {
-			define( 'MAI_DISPLAY_TAXONOMY_VERSION', '1.0.0' );
+			define( 'MAI_DISPLAY_TAXONOMY_VERSION', '1.0.1' );
 		}
 
 		// Plugin Folder Path.
@@ -169,6 +169,16 @@ final class Mai_Display_Taxonomy {
 		// Maybe set github api token.
 		if ( defined( 'MAI_GITHUB_API_TOKEN' ) ) {
 			$updater->setAuthentication( MAI_GITHUB_API_TOKEN );
+		}
+
+		// Add icons for Dashboard > Updates screen.
+		if ( function_exists( 'mai_get_updater_icons' ) && $icons = mai_get_updater_icons() ) {
+			$updater->addResultFilter(
+				function ( $info ) use ( $icons ) {
+					$info->icons = $icons;
+					return $info;
+				}
+			);
 		}
 	}
 
