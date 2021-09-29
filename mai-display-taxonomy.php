@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name:     Mai Display Taxonomy
- * Plugin URI:      https://bizbudding.com/products/mai-display-taxonomy/
+ * Plugin URI:      https://bizbudding.com/mai-theme/plugins/mai-display-taxonomy/
  * Description:     Creates a private "Display" taxonomy for use with Mai Post Grid block.
  * Version:         1.0.1
  *
@@ -98,6 +98,11 @@ final class Mai_Display_Taxonomy {
 			define( 'MAI_DISPLAY_TAXONOMY_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 		}
 
+		// Plugin Includes Path.
+		if ( ! defined( 'MAI_DISPLAY_TAXONOMY_INCLUDES_DIR' ) ) {
+			define( 'MAI_DISPLAY_TAXONOMY_INCLUDES_DIR', MAI_DISPLAY_TAXONOMY_PLUGIN_DIR . 'includes/' );
+		}
+
 		// Plugin Folder URL.
 		if ( ! defined( 'MAI_DISPLAY_TAXONOMY_PLUGIN_URL' ) ) {
 			define( 'MAI_DISPLAY_TAXONOMY_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -112,7 +117,6 @@ final class Mai_Display_Taxonomy {
 		if ( ! defined( 'MAI_DISPLAY_TAXONOMY_BASENAME' ) ) {
 			define( 'MAI_DISPLAY_TAXONOMY_BASENAME', dirname( plugin_basename( __FILE__ ) ) );
 		}
-
 	}
 
 	/**
@@ -125,6 +129,12 @@ final class Mai_Display_Taxonomy {
 	private function includes() {
 		// Include vendor libraries.
 		require_once __DIR__ . '/vendor/autoload.php';
+		// Includes.
+		foreach ( glob( MAI_DISPLAY_TAXONOMY_INCLUDES_DIR . '*.php' ) as $file ) { include $file; }
+		// Settings.
+		if ( is_admin() ) {
+			$setting = new Mai_Display_Taxonomy_Settings();
+		}
 	}
 
 	/**
@@ -134,7 +144,6 @@ final class Mai_Display_Taxonomy {
 	 * @return  void
 	 */
 	public function hooks() {
-
 		add_action( 'admin_init', array( $this, 'updater' ) );
 		add_action( 'init',       array( $this, 'register_content_types' ) );
 
@@ -188,9 +197,7 @@ final class Mai_Display_Taxonomy {
 	 * @return  void
 	 */
 	public function register_content_types() {
-
-		// Filter for posts types to enabled the display taxo on.
-		$post_types = apply_filters( 'mai_display_taxonomy_post_types', array( 'post' ) );
+		$post_types = maidt_get_post_types();
 
 		// Register "Display" taxonomy.
 		register_taxonomy( 'mai_display', $post_types, array(
@@ -235,7 +242,6 @@ final class Mai_Display_Taxonomy {
 		$this->register_content_types();
 		flush_rewrite_rules();
 	}
-
 }
 
 /**
@@ -253,9 +259,9 @@ final class Mai_Display_Taxonomy {
  *
  * @return object|Mai_Display_Taxonomy The one true Mai_Display_Taxonomy Instance.
  */
-function Mai_Display_Taxonomy() {
+function mai_display_taxonomy() {
 	return Mai_Display_Taxonomy::instance();
 }
 
 // Get Mai_Display_Taxonomy Running.
-Mai_Display_Taxonomy();
+mai_display_taxonomy();
