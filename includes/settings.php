@@ -48,9 +48,19 @@ class Mai_Display_Taxonomy_Settings {
 		?>
 		<div class="wrap">
 			<h2><?php echo __( 'Mai Display Taxonomy', 'mai-display-taxonomy' ); ?></h2>
+			<h3><?php echo __( 'Post Types', 'mai-display-taxonomy' ); ?></h3>
 			<p><?php echo __( 'Select post types to use with the Display taxonomy.', 'mai-display-taxonomy' ); ?></p>
 
-			<form method="post" action="options.php">
+			<style>
+			#maidt-settings-form th {
+				display: none;
+			}
+			#maidt-settings-form td {
+				padding: 8px 0;
+			}
+			</style>
+
+			<form id="maidt-settings-form" method="post" action="options.php">
 				<?php
 				settings_fields( 'mai_display_taxonomy' );
 				do_settings_sections( 'maidt-settings' );
@@ -87,12 +97,10 @@ class Mai_Display_Taxonomy_Settings {
 				'maidt-settings' // page.
 			);
 
-			$first = true;
-
 			foreach ( $this->post_types as $post_type ) {
 				add_settings_field(
 					$post_type, // id.
-					$first ? __( 'Post Types', 'mai-display-taxonomy' ) : '', // title.
+					'',
 					function() use ( $existing, $post_type ) {
 						printf( '<label for="post-type-%s"><input type="checkbox" id="post-type-%s" name="mai_display_taxonomy[post_types][%s]" value="%s"%s>%s</label>',
 							$post_type,
@@ -106,8 +114,6 @@ class Mai_Display_Taxonomy_Settings {
 					'maidt-settings', // page.
 					'maidt-post-types' // section.
 				);
-
-				$first = false;
 			}
 		}
 	}
