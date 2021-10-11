@@ -1,7 +1,7 @@
 # Mai Display Taxonomy
 Creates a private "Display" taxonomy for use with Mai Post Grid block.
 
-## Example
+## "How-to" Example
 1. Create a Display term called "Home Handpicked".
 1. Select some posts and add them to Home Favorites term via the post edit screen or by bulk edit.
 1. (v2 Mai Themes) Add a Mai Post Grid block and in the “Entries” tab, get entries by Taxonomy and configure it to use the Display taxonomy with posts in the Home Handpicked category
