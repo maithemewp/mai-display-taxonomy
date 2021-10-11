@@ -9,19 +9,19 @@ class Mai_Display_Taxonomy_Settings {
 	/**
 	 * Gets it started.
 	 *
-	 * @since TBD
+	 * @since 1.1.0
 	 *
 	 * @return void
 	 */
 	public function __construct() {
-		add_action( 'admin_menu', [ $this, 'add_page' ], 30 );
+		add_action( 'admin_menu', [ $this, 'add_page' ], 12 );
 		add_action( 'admin_init', [ $this, 'register_settings' ], 999 );
 	}
 
 	/**
 	 * Adds options page.
 	 *
-	 * @since TBD
+	 * @since 1.1.0
 	 *
 	 * @return void
 	 */
@@ -33,14 +33,14 @@ class Mai_Display_Taxonomy_Settings {
 			'manage_options', // capability.
 			'mai-display-taxonomy', // menu_slug.
 			[ $this, 'add_page_content' ], // callback.
-			12
+			null
 		);
 	}
 
 	/**
 	 * Adds options page content.
 	 *
-	 * @since TBD
+	 * @since 1.1.0
 	 *
 	 * @return void
 	 */
@@ -64,7 +64,7 @@ class Mai_Display_Taxonomy_Settings {
 	/**
 	 * Registers settings.
 	 *
-	 * @since TBD
+	 * @since 1.1.0
 	 *
 	 * @return void
 	 */
@@ -117,7 +117,7 @@ class Mai_Display_Taxonomy_Settings {
 	 * Keeps existing post types that are no longer registered
 	 * so you can toggle a plugin off without losing its setting here.
 	 *
-	 * @since TBD
+	 * @since 1.1.0
 	 *
 	 * @return array
 	 */

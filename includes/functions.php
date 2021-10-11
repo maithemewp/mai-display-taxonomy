@@ -3,7 +3,7 @@
 /**
  * Gets post types that taxonomy is registered to.
  *
- * @since TBD
+ * @since 1.1.0
  *
  * @return array
  */
