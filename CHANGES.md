@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.1 (10/11/21)
+* Changed: Better styling for post type settings.
+
 ## 1.1.0 (10/11/21)
 * Added: Settings page to choose which post types to use Display taxonomy with.
 
