@@ -143,7 +143,7 @@ class Mai_Display_Taxonomy_Settings {
 	/**
 	 * Return the plugin action links.  This will only be called if the plugin is active.
 	 *
-	 * @since TBD
+	 * @since 1.2.0
 	 *
 	 * @param array  $actions     Associative array of action names to anchor tags
 	 * @param string $plugin_file Plugin file name, ie my-plugin/my-plugin.php

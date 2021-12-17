@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.2.0 (12/17/21)
+* Added: Settings link on plugins list.
+
 ## 1.1.1 (10/11/21)
 * Changed: Better styling for post type settings.
 
