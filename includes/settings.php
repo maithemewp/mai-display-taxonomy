@@ -16,6 +16,7 @@ class Mai_Display_Taxonomy_Settings {
 	public function __construct() {
 		add_action( 'admin_menu', [ $this, 'add_page' ], 12 );
 		add_action( 'admin_init', [ $this, 'register_settings' ], 999 );
+		add_filter( 'plugin_action_links_mai-display-taxonomy/mai-display-taxonomy.php', [ $this, 'add_settings_link' ], 10, 4 );
 	}
 
 	/**
@@ -80,7 +81,8 @@ class Mai_Display_Taxonomy_Settings {
 	 */
 	public function register_settings() {
 		$existing         = maidt_get_post_types();
-		$this->post_types = array_values( get_post_types( [ 'public' => true ] ) );
+		$post_types       = array_values( get_post_types( [ 'public' => true ] ) );
+		$this->post_types = (array) apply_filters( 'mai_display_taxonomy_post_type_choices', $post_types );
 
 		if ( $this->post_types ) {
 
@@ -136,5 +138,25 @@ class Mai_Display_Taxonomy_Settings {
 		$input['post_types'] = array_unique( $input['post_types'] );
 
 		return $input;
+	}
+
+	/**
+	 * Return the plugin action links.  This will only be called if the plugin is active.
+	 *
+	 * @since TBD
+	 *
+	 * @param array  $actions     Associative array of action names to anchor tags
+	 * @param string $plugin_file Plugin file name, ie my-plugin/my-plugin.php
+	 * @param array  $plugin_data Associative array of plugin data from the plugin file headers
+	 * @param string $context     Plugin status context, ie 'all', 'active', 'inactive', 'recently_active'
+	 *
+	 * @return array Associative array of plugin action links.
+	 */
+	function add_settings_link( $actions, $plugin_file, $plugin_data, $context ) {
+		$url                 = admin_url( sprintf( '%s.php?page=mai-display-taxonomy', class_exists( 'Mai_Engine' ) ? 'admin' : 'options-general' ) );
+		$link                = sprintf( '<a href="%s">%s</a>', $url, __( 'Settings', 'mai-display-taxonomy' ) );
+		$actions['settings'] = $link;
+
+		return $actions;
 	}
 }
