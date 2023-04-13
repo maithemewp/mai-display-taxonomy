@@ -144,10 +144,10 @@ final class Mai_Display_Taxonomy {
 	 * @return  void
 	 */
 	public function hooks() {
-		add_action( 'admin_init', array( $this, 'updater' ) );
-		add_action( 'init',       array( $this, 'register_content_types' ) );
+		add_action( 'plugins_loaded', [ $this, 'updater' ] );
+		add_action( 'init',           [ $this, 'register_content_types' ] );
 
-		register_activation_hook( __FILE__, array( $this, 'activate' ) );
+		register_activation_hook( __FILE__, [ $this, 'activate' ] );
 		register_deactivation_hook( __FILE__, 'flush_rewrite_rules' );
 	}
 
@@ -161,7 +161,6 @@ final class Mai_Display_Taxonomy {
 	 * @return  void
 	 */
 	public function updater() {
-
 		// Bail if current user cannot manage plugins.
 		if ( ! current_user_can( 'install_plugins' ) ) {
 			return;
