@@ -90,7 +90,6 @@ final class Mai_Display_Taxonomy {
 	 * @return  void
 	 */
 	private function setup_constants() {
-
 		// Plugin version.
 		if ( ! defined( 'MAI_DISPLAY_TAXONOMY_VERSION' ) ) {
 			define( 'MAI_DISPLAY_TAXONOMY_VERSION', '1.3.0' );
