@@ -4,7 +4,7 @@
  * Plugin Name:     Mai Display Taxonomy
  * Plugin URI:      https://bizbudding.com/mai-theme/plugins/mai-display-taxonomy/
  * Description:     Creates a private "Display" taxonomy for use with Mai Post Grid block.
- * Version:         1.2.1
+ * Version:         1.3.0
  *
  * Author:          BizBudding
  * Author URI:      https://bizbudding.com
@@ -12,6 +12,9 @@
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
+
+// Must be at the top of the file.
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
 /**
  * Main Mai_Display_Taxonomy Class.
@@ -90,7 +93,7 @@ final class Mai_Display_Taxonomy {
 
 		// Plugin version.
 		if ( ! defined( 'MAI_DISPLAY_TAXONOMY_VERSION' ) ) {
-			define( 'MAI_DISPLAY_TAXONOMY_VERSION', '1.2.1' );
+			define( 'MAI_DISPLAY_TAXONOMY_VERSION', '1.3.0' );
 		}
 
 		// Plugin Folder Path.
@@ -144,7 +147,7 @@ final class Mai_Display_Taxonomy {
 	 * @return  void
 	 */
 	public function hooks() {
-		add_action( 'plugins_loaded', [ $this, 'updater' ] );
+		add_action( 'plugins_loaded', [ $this, 'updater' ], 12 );
 		add_action( 'init',           [ $this, 'register_content_types' ] );
 
 		register_activation_hook( __FILE__, [ $this, 'activate' ] );
@@ -161,18 +164,13 @@ final class Mai_Display_Taxonomy {
 	 * @return  void
 	 */
 	public function updater() {
-		// Bail if current user cannot manage plugins.
-		if ( ! current_user_can( 'install_plugins' ) ) {
-			return;
-		}
-
 		// Bail if plugin updater is not loaded.
-		if ( ! class_exists( 'Puc_v4_Factory' ) ) {
+		if ( ! class_exists( 'YahnisElsts\PluginUpdateChecker\v5\PucFactory' ) ) {
 			return;
 		}
 
 		// Setup the updater.
-		$updater = Puc_v4_Factory::buildUpdateChecker( 'https://github.com/maithemewp/mai-display-taxonomy/', __FILE__, 'mai-display-taxonomy' );
+		$updater = PucFactory::buildUpdateChecker( 'https://github.com/maithemewp/mai-display-taxonomy/', __FILE__, 'mai-display-taxonomy' );
 
 		// Maybe set github api token.
 		if ( defined( 'MAI_GITHUB_API_TOKEN' ) ) {

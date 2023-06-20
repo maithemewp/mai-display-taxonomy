@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.3.0 (6/20/23)
+* Changed: Update the updater.
+
 ## 1.2.1 (4/13/23)
 * Changed: Updated the updater.
 * Changed: Run updater script laters, per script recommendations.
