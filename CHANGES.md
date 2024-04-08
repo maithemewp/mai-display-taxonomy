@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.3.2 (4/8/24)
+* Changed: Update the updater.
+
 ## 1.3.1 (11/27/23)
 * Changed: Update the updater.
 
