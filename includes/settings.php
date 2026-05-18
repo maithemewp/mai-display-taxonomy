@@ -153,10 +153,11 @@ class Mai_Display_Taxonomy_Settings {
 	 * @return array Associative array of plugin action links.
 	 */
 	function add_settings_link( $actions, $plugin_file, $plugin_data, $context ) {
-		$url                 = admin_url( sprintf( '%s.php?page=mai-display-taxonomy', class_exists( 'Mai_Engine' ) ? 'admin' : 'options-general' ) );
-		$link                = sprintf( '<a href="%s">%s</a>', $url, __( 'Settings', 'mai-display-taxonomy' ) );
-		$actions['settings'] = $link;
+		$url    = admin_url( sprintf( '%s.php?page=mai-display-taxonomy', class_exists( 'Mai_Engine' ) ? 'admin' : 'options-general' ) );
+		$custom = [
+			'settings' => sprintf( '<a href="%s">%s</a>', $url, __( 'Settings', 'mai-display-taxonomy' ) ),
+		];
 
-		return $actions;
+		return array_merge( $custom, $actions );
 	}
 }
