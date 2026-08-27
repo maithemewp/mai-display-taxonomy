@@ -5,6 +5,7 @@
  * Plugin URI:      https://bizbudding.com/mai-theme/plugins/mai-display-taxonomy/
  * Description:     Creates a private "Display" taxonomy for use with Mai Post Grid block.
  * Version:         1.3.3
+ * Requires PHP:    8.1
  *
  * Author:          BizBudding
  * Author URI:      https://bizbudding.com
